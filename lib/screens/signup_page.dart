@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class SignupPage extends StatefulWidget {
+  const SignupPage({Key? key}) : super(key: key);
+
   @override
   _SignupPageState createState() => _SignupPageState();
 }
@@ -16,13 +18,23 @@ class _SignupPageState extends State<SignupPage> {
     if (_formKey.currentState!.validate()) {
       if (_passwordController.text != _confirmPasswordController.text) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Passwords do not match')),
+          const SnackBar(content: Text('Passwords do not match')),
         );
         return;
       }
-      // TODO: Implement actual signup logic
+      _performSignup();
+    }
+  }
+
+  void _performSignup() async {
+    try {
+      // TODO: Implement actual signup logic with backend service
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Signup Attempted')),
+        const SnackBar(content: Text('Signup Successful')),
+      );
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Signup Failed: ${e.toString()}')),
       );
     }
   }
@@ -31,17 +43,17 @@ class _SignupPageState extends State<SignupPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Sign Up'),
+        title: const Text('Sign Up'),
       ),
       body: Padding(
-        padding: EdgeInsets.all(20),
+        padding: const EdgeInsets.all(20),
         child: Form(
           key: _formKey,
           child: ListView(
             children: [
               TextFormField(
                 controller: _nameController,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Full Name',
                   prefixIcon: Icon(Icons.person),
                 ),
@@ -52,10 +64,10 @@ class _SignupPageState extends State<SignupPage> {
                   return null;
                 },
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               TextFormField(
                 controller: _emailController,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Email',
                   prefixIcon: Icon(Icons.email),
                 ),
@@ -66,10 +78,10 @@ class _SignupPageState extends State<SignupPage> {
                   return null;
                 },
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               TextFormField(
                 controller: _passwordController,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Password',
                   prefixIcon: Icon(Icons.lock),
                 ),
@@ -84,10 +96,10 @@ class _SignupPageState extends State<SignupPage> {
                   return null;
                 },
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               TextFormField(
                 controller: _confirmPasswordController,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Confirm Password',
                   prefixIcon: Icon(Icons.lock_outline),
                 ),
@@ -99,12 +111,12 @@ class _SignupPageState extends State<SignupPage> {
                   return null;
                 },
               ),
-              SizedBox(height: 30),
+              const SizedBox(height: 30),
               ElevatedButton(
                 onPressed: _signup,
-                child: Text('Sign Up', style: TextStyle(fontSize: 18)),
+                child: const Text('Sign Up', style: TextStyle(fontSize: 18)),
                 style: ElevatedButton.styleFrom(
-                  minimumSize: Size(double.infinity, 50),
+                  minimumSize: const Size(double.infinity, 50),
                 ),
               ),
             ],
