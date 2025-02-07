@@ -3,6 +3,8 @@ import 'login_page.dart';
 import 'signup_page.dart';
 
 class LandingPage extends StatelessWidget {
+  const LandingPage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -14,20 +16,23 @@ class LandingPage extends StatelessWidget {
               // Logo or App Name
               Text(
                 'Mkiondo',
-                style: Theme.of(context).textTheme.headline1,
+                style: Theme.of(context).textTheme.displayLarge,
               ),
               SizedBox(height: 20),
               
               // Tagline
               Text(
                 'Revolutionizing Self-Checkout Technology',
-                style: Theme.of(context).textTheme.bodyText1,
+                style: Theme.of(context).textTheme.bodyLarge,
                 textAlign: TextAlign.center,
               ),
               SizedBox(height: 40),
               
               // Action Buttons
               ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  minimumSize: Size(300, 50),
+                ),
                 onPressed: () {
                   Navigator.push(
                     context,
@@ -35,13 +40,14 @@ class LandingPage extends StatelessWidget {
                   );
                 },
                 child: Text('Login', style: TextStyle(fontSize: 18)),
-                style: ElevatedButton.styleFrom(
-                  minimumSize: Size(300, 50),
-                ),
               ),
               SizedBox(height: 20),
               
               OutlinedButton(
+                style: OutlinedButton.styleFrom(
+                  minimumSize: Size(300, 50),
+                  side: BorderSide(color: Theme.of(context).primaryColor),
+                ),
                 onPressed: () {
                   Navigator.push(
                     context,
@@ -54,10 +60,6 @@ class LandingPage extends StatelessWidget {
                     fontSize: 18, 
                     color: Theme.of(context).primaryColor
                   ),
-                ),
-                style: OutlinedButton.styleFrom(
-                  minimumSize: Size(300, 50),
-                  side: BorderSide(color: Theme.of(context).primaryColor),
                 ),
               ),
             ],
